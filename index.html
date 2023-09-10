@@ -17,7 +17,7 @@
                 
                 <div class="all-todos">
                     <div v-for="todo in todos" class="single-todo" :class="{ done: todo.done }">
-                        <p @click="todo.done = !todo.done">{{ todo.text }}</p>
+                        <p @click="setDoneTodo(todo)">{{ todo.text }}</p>
                     </div>
                 </div>
 
