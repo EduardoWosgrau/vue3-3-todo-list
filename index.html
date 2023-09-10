@@ -16,12 +16,12 @@
                 <p v-if="todos.length <= 0">Nothing To Do</p>
                 
                 <div class="all-todos">
-                    <div v-for="todo in todos" class="single-todo" :class="{ done: todo.finished }">
-                        <p @click="todo.finished = !todo.finished">{{ todo.text }}</p>
+                    <div v-for="todo in todos" class="single-todo" :class="{ done: todo.done }">
+                        <p @click="todo.done = !todo.done">{{ todo.text }}</p>
                     </div>
                 </div>
 
-                <button class="clear" @click="clearTodos()">Limpar tudo</button>
+                <button v-if="todos.length > 0" class="clear" @click="clearTodos()">Limpar tudo</button>
 
                 <input v-model="newTodo.text" type="text" placeholder="Escreva uma nova tarefa...">
                 <button class="add" @click="addTodo()">Adicionar</button>

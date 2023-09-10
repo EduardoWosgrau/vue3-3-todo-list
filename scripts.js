@@ -1,25 +1,15 @@
 
-var todos = [
-    {
-        "text": "Test To Do New",
-        "finished": false,
-    },
-    {
-        "text": "Test To Do Finished",
-        "finished": true,
-    },
-];
-
 const TodosMachine = {
     data(){
         return {
-            todos: window.todos,
+            todos: [],
             newTodo: {},
         }
     },
     methods: {
         clearTodos: function(){
             this.todos = [];
+            window.localStorage.setItem("todos", JSON.stringify(this.todos));
         },
         addTodo: function(){
             if (!this.newTodo.text){
@@ -28,11 +18,19 @@ const TodosMachine = {
             };
             this.todos.push({
                 "text": this.newTodo.text,
-                "finished": false,
+                "done": false,
             });
             this.newTodo = {};
+            window.localStorage.setItem("todos", JSON.stringify(this.todos));
         },
     },
+    created(){
+        var localTodos = window.localStorage.getItem("todos");
+        if (localTodos) this.todos = JSON.parse(localTodos);
+    },
+    updated(){
+        window.localStorage.setItem("todos", JSON.stringify(this.todos));
+    }
 };
 
 Vue.createApp(TodosMachine).mount("#app");
