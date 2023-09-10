@@ -30,7 +30,7 @@ const TodosMachine = {
                 "text": this.newTodo.text,
                 "finished": false,
             });
-            newTodo = {};
+            this.newTodo = {};
         },
     },
 };

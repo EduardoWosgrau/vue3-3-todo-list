@@ -12,6 +12,8 @@
         <main id="app">
             <section class="todo-list">
                 <h3>To Do List</h3>
+
+                <p v-if="todos.length <= 0">Nothing To Do</p>
                 
                 <div class="all-todos">
                     <div v-for="todo in todos" class="single-todo" :class="{ done: todo.finished }">
